@@ -1,7 +1,5 @@
 package GeneralLedger;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,12 +12,10 @@ public class MainMenuController {
 
     public TextField selectedClientTextField;
 
-    public void clientSelectClick() {
-
-
+    public void clientSelectClicked() {
 
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("clientMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/clientMenu.fxml"));
             Parent clientWindowScene = loader.load();
             Stage clientWindow = new Stage();
             ClientMenuController controller = loader.getController();
@@ -28,11 +24,8 @@ public class MainMenuController {
             clientWindow.setScene(new Scene(clientWindowScene));
             clientWindow.show();
 
-            selectedClientTextField.textProperty().addListener(new ChangeListener<String>() {
-                @Override
-                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            selectedClientTextField.textProperty().addListener((observable, oldValue, newValue) -> {
                     clientWindow.close();
-                }
             });
 
         } catch (IOException e) {

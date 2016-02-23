@@ -2,13 +2,8 @@ package GeneralLedger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 
 
 import java.io.BufferedReader;
@@ -21,7 +16,7 @@ public class ClientMenuController implements Initializable{
 
     private MainMenuController mainWindow;
 
-    public ListView clientList;
+    public ListView<String> clientList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,16 +32,15 @@ public class ClientMenuController implements Initializable{
 
         clientList.setOnMouseClicked((click) ->  {
             if (click.getClickCount() == 2) {
-                mainWindow.selectedClientTextField.setText(clientList.getSelectionModel().getSelectedItem().toString());
-
+                mainWindow.selectedClientTextField.setText(clientList.getSelectionModel().getSelectedItem());
             }
         });
     }
 
     public ObservableList<String> getClientList() {
 
-        String fileName = "clientList.txt";
-        String line = null;
+        String fileName = "data/clientList.txt";
+        String line;
         ObservableList<String> clients = FXCollections.observableArrayList();
 
         try {

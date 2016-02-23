@@ -40,7 +40,7 @@
                <children>
                   <Label text="Client:" />
                   <TextField fx:id="selectedClientTextField" disable="true" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#clientSelectClick" text="Select..." />
+                  <Button mnemonicParsing="false" onAction="#clientSelectClicked" text="Select..." />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
