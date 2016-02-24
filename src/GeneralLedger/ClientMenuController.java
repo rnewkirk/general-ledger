@@ -83,9 +83,35 @@ public class ClientMenuController implements Initializable{
 
     //Actions
     public void newClientClicked(){
-        String newClient = InputBox.display("New Client Creation", "Please enter the client's name.");
-        System.out.println(newClient);
+        String newClient = "";
+        newClient = InputBox.display("New Client Creation", "Please enter the client's name.");
 
+        //check if new client is duplicate before adding new client
+        boolean duplicateCheck = false;
+        ObservableList<String> clients = getClientList();
+
+        for (String client : clients) {
+            if (client.equalsIgnoreCase(newClient)) {
+                duplicateCheck = true;
+                break;
+            } else {
+                duplicateCheck = false;
+            }
+        }
+
+        if (!duplicateCheck && !newClient.equals("")) {
+            File file = new File("data/clientList.txt");
+
+            try {
+                FileWriter fw = new FileWriter(file,true);
+                fw.write(newClient+"\n");
+                fw.close();
+                clientList.setItems(getClientList());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
     public void copyClientClicked(){
