@@ -81,4 +81,18 @@ public class ClientMenuController implements Initializable{
         return clients;
     }
 
+    //Actions
+    public void newClientClicked(){
+        String newClient = InputBox.display("New Client Creation", "Please enter the client's name.");
+        System.out.println(newClient);
+
+
+    }
+    public void copyClientClicked(){
+
+    }
+    public void deleteClientClicked(){
+
+
+    }
 }
